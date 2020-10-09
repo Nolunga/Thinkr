@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "823781831347",
+    "firebase_url": "https://thinkr-9c8f6.firebaseio.com",
+    "project_id": "thinkr-9c8f6",
+    "storage_bucket": "thinkr-9c8f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823781831347:android:b6c1cd96c875aafd1276c6",
+        "android_client_info": {
+          "package_name": "in.insideandroid.logintemplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823781831347-tc67a8ton1n82iak4rhi9k1ba0meakp9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.insideandroid.logintemplate",
+            "certificate_hash": "dceb3bf4d707028c1d28fd42c7440612efce39ec"
+          }
+        },
+        {
+          "client_id": "823781831347-no9t2ioam0pesa37i7mfs4lvkbuchj2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg0d6SRj1EyLdRR_LG3CdEyximOU9r2rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823781831347-no9t2ioam0pesa37i7mfs4lvkbuchj2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
