@@ -1,4 +1,4 @@
-package `in`.android.thinkr
+package edu.android.thinkr
 
 import org.junit.Test
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context=".SignupActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:background="@android:color/transparent"
@@ -21,7 +22,7 @@
         android:orientation="vertical"
         android:fillViewport="true"
         android:fitsSystemWindows="true"
-        tools:context="in.android.template.LoginActivity">
+        tools:context="edu.android.template.LoginActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
