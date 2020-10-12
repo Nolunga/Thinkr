@@ -3,17 +3,43 @@ package edu.android.thinkr
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
+import edu.android.thinkr.utils.Resource
+import edu.android.thinkr.utils.Validation.isValidEmail
+import edu.android.thinkr.utils.Validation.isValidPassword
+import edu.android.thinkr.utils.showToast
+import edu.android.thinkr.utils.takeWords
+import edu.android.thinkr.viewModel.AppViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var username : TextInputEditText
+    private lateinit var password : EditText
+    private lateinit var loginProgress : ProgressBar
+    private lateinit var loginButton : Button
+
+    private val viewModel by lazy {
+        ViewModelProvider.AndroidViewModelFactory(application).create(AppViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setStatusBarTransparent(this@LoginActivity)
+
+        username = findViewById(R.id.tgt_username)
+        password = findViewById(R.id.tgt_password)
+        loginProgress = findViewById(R.id.login_progress)
+        loginButton = findViewById(R.id.button_signin)
     }
 
     private fun setStatusBarTransparent(activity: AppCompatActivity){
@@ -34,5 +60,51 @@ class LoginActivity : AppCompatActivity() {
         } else if(view.id == R.id.button_forgot_password){
             startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
         }
+    }
+
+    fun initiateSignUp(view: View) {
+        if (!validateFields()) return
+        viewModel.loginUser(username.takeWords(), password.takeWords()).observe(this, Observer {
+            when(it){
+                is Resource.Loading -> showProgress()
+                is Resource.Success ->{
+                    hideProgress()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+                is Resource.Failure ->{
+                    showToast(it.message)
+                    hideProgress()
+                }
+            }
+        })
+    }
+
+    private fun validateFields(): Boolean {
+
+        if (!isValidEmail(username.takeWords())){
+            login_email_text_input_layout.error = "Enter valid Email"
+            return false
+        } else {
+            login_email_text_input_layout.error = null
+        }
+
+        if (!isValidPassword(password.takeWords())){
+            login_password_text_input_layout.error = "Password of 6 characters & above required"
+            return false
+        }else {
+            login_password_text_input_layout.error = null
+        }
+        return true
+    }
+
+    private fun showProgress() {
+        loginButton.isEnabled = false
+        loginProgress.visibility = View.VISIBLE
+    }
+
+    private fun hideProgress() {
+        loginButton.isEnabled = true
+        loginProgress.visibility = View.INVISIBLE
     }
 }
