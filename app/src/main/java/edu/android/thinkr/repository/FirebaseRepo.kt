@@ -69,6 +69,25 @@ class FirebaseRepo private constructor() {
         return result
     }
 
+    suspend fun resetPassword(email: String): Resource<String> {
+        var result : Resource<String> = Resource.Loading()
+        try {
+            auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener {
+                    result = if (it.isSuccessful) Resource.Success("Password reset email sent") else Resource.Failure(it.exception?.message!!)
+                }
+                .addOnFailureListener {
+                    Log.e(TAG,  it.message!!)
+                    result = Resource.Failure(it.message!!)
+                }.await()
+        }catch (e : Exception){
+            Log.e(TAG, e.message!! )
+            result = Resource.Failure(e.message!!)
+        }
+        return result
+    }
+
+
     companion object {
         private const val TAG = "FirebaseRepo"
         @Volatile

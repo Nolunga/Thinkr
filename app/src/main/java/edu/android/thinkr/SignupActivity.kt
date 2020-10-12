@@ -101,8 +101,8 @@ class SignupActivity : AppCompatActivity() {
                 is Resource.Loading -> showProgress()
                 is Resource.Success ->{
                     hideProgress()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    showToast(it.data)
+                    startActivity(Intent(this, LoginActivity::class.java))
                 }
                 is Resource.Failure ->{
                     showToast(it.message)

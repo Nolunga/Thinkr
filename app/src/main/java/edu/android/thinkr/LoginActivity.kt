@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -13,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
 import edu.android.thinkr.utils.Resource
 import edu.android.thinkr.utils.Validation.isValidEmail
 import edu.android.thinkr.utils.Validation.isValidPassword
@@ -21,11 +25,13 @@ import edu.android.thinkr.utils.takeWords
 import edu.android.thinkr.viewModel.AppViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
+private const val TAG = "LoginActivity"
 class LoginActivity : AppCompatActivity() {
     private lateinit var username : TextInputEditText
     private lateinit var password : EditText
     private lateinit var loginProgress : ProgressBar
     private lateinit var loginButton : Button
+    private lateinit var firebaseAuthStateListener : FirebaseAuth.AuthStateListener
 
     private val viewModel by lazy {
         ViewModelProvider.AndroidViewModelFactory(application).create(AppViewModel::class.java)
@@ -33,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_login)
         setStatusBarTransparent(this@LoginActivity)
 
@@ -40,6 +47,25 @@ class LoginActivity : AppCompatActivity() {
         password = findViewById(R.id.tgt_password)
         loginProgress = findViewById(R.id.login_progress)
         loginButton = findViewById(R.id.button_signin)
+
+        firebaseAuthStateListener = FirebaseAuth.AuthStateListener {
+            val user : FirebaseUser? = it.currentUser
+            if (user != null){
+                startActivity(Intent(this, MainActivity::class.java))
+                Log.e(TAG,  user.toString() )
+                finish()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+            FirebaseAuth.getInstance().addAuthStateListener(firebaseAuthStateListener)
+    }
+
+    override fun onStop() {
+        super.onStop()
+            FirebaseAuth.getInstance().removeAuthStateListener(firebaseAuthStateListener)
     }
 
     private fun setStatusBarTransparent(activity: AppCompatActivity){
@@ -69,8 +95,7 @@ class LoginActivity : AppCompatActivity() {
                 is Resource.Loading -> showProgress()
                 is Resource.Success ->{
                     hideProgress()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    showToast(it.data)
                 }
                 is Resource.Failure ->{
                     showToast(it.message)

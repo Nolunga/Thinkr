@@ -2,6 +2,7 @@ package edu.android.thinkr.viewModel
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.google.android.material.textfield.TextInputEditText
 import edu.android.thinkr.repository.FirebaseRepo
 import edu.android.thinkr.user.User
 import edu.android.thinkr.utils.Resource
@@ -40,6 +41,15 @@ public class AppViewModel(application: Application) : AndroidViewModel(applicati
         genericLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             genericLiveData.postValue(firebaseRepository.signInUsers(email, password))
+        }
+        return genericLiveData
+    }
+
+    fun resetPassword(email: String): MutableLiveData<Resource<String>> {
+        val genericLiveData = MutableLiveData<Resource<String>>()
+        genericLiveData.value = Resource.Loading()
+        viewModelScope.launch(Dispatchers.IO) {
+            genericLiveData.postValue(firebaseRepository.resetPassword(email))
         }
         return genericLiveData
     }
