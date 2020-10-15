@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/thinkrlogo"
+        android:icon="@drawable/thinkrpen"
         android:label="Thinkr"
-        android:roundIcon="@drawable/thinkrlogo"
+        android:roundIcon="@drawable/thinkrpen"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
