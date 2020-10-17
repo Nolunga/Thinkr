@@ -68,7 +68,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Subject and start Thinkin."
+        android:text="Select Subject and Start Thinkin."
         app:layout_constraintBottom_toTopOf="@+id/btnsub1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
