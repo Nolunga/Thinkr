@@ -14,12 +14,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import edu.android.thinkr.user.User
+import edu.android.thinkr.models.User
 import edu.android.thinkr.utils.Resource
-import edu.android.thinkr.utils.Validation
 import edu.android.thinkr.utils.Validation.isValidConfirmPassword
 import edu.android.thinkr.utils.Validation.isValidEmail
 import edu.android.thinkr.utils.Validation.isValidPassword
@@ -103,6 +101,7 @@ class SignupActivity : AppCompatActivity() {
                     hideProgress()
                     showToast(it.data)
                     startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
                 }
                 is Resource.Failure ->{
                     showToast(it.message)
