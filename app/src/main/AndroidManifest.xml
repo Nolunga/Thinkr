@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="in.android.thinkr">
+    package="edu.android.thinkr">
 
     <application
         android:allowBackup="true"
@@ -11,17 +11,16 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="in.android.thinkr.ForgotPasswordActivity"
+        <activity android:name=".ForgotPasswordActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name="in.android.thinkr.SignupActivity"
+            android:name=".SignupActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name="in.android.thinkr.LoginActivity"
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
