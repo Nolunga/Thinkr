@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import edu.android.thinkr.adapters.SubjectListAdapter
 import edu.android.thinkr.models.Subject
 import edu.android.thinkr.utils.AppConstants.CHAT_ROOM_KEY
@@ -70,12 +72,12 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
 
     private fun getChatData() {
         chatData = listOf(
-            Subject("Math", R.drawable.ic_math, R.color.md_blue_200, getChatRoomID("Math")),
-            Subject("English", R.drawable.ic_english, R.color.md_red_200, getChatRoomID("English")),
-            Subject("Life Science", R.drawable.ic_life_science, R.color.md_green_200, getChatRoomID("Life Science")),
-            Subject("Chemistry", R.drawable.ic_chemistry, R.color.md_yellow_200, getChatRoomID("Chemistry")),
-            Subject("Accounting", R.drawable.ic_accounting, R.color.md_deep_purple_200, getChatRoomID("Accounting")),
-            Subject("French", R.drawable.ic_french, R.color.md_pink_200, getChatRoomID("French"))
+            Subject("Math", R.drawable.ic_math, R.color.md_blue_200, R.color.md_blue_50, "fWJfvwbLkqZBJbA7IPfr"),
+            Subject("English", R.drawable.ic_english, R.color.md_red_200,  R.color.md_red_50, "13kgvYmbYgvDpE9bO5v0"),
+            Subject("Life Science", R.drawable.ic_life_science, R.color.md_green_200, R.color.md_green_50, "6efSteXeg68a50rfWK83"),
+            Subject("Chemistry", R.drawable.ic_chemistry, R.color.md_yellow_200, R.color.md_yellow_50, "1RVdBRppF7QApbrOZ3mm"),
+            Subject("Accounting", R.drawable.ic_accounting, R.color.md_deep_purple_200, R.color.md_deep_purple_50, "fJwa7sHnvRuI8TQJjBYF"),
+            Subject("French", R.drawable.ic_french, R.color.md_pink_200, R.color.md_pink_50, "NyKD5yTvNnA9Tm2ZDrRE")
         )
     }
 

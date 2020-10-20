@@ -13,10 +13,13 @@ class Subject(
       val chat_room_name : String,
       val image: Int,
       val cardBackgroundColor: Int,
+      val chatBackgroundColor: Int,
       val chat_room_id : String
+
 ) :Parcelable {
      constructor(parcel: Parcel) : this(
           parcel.readString()!!,
+          parcel.readInt(),
           parcel.readInt(),
           parcel.readInt(),
           parcel.readString()!!
@@ -27,6 +30,7 @@ class Subject(
           parcel.writeString(chat_room_name)
           parcel.writeInt(image)
           parcel.writeInt(cardBackgroundColor)
+          parcel.writeInt(chatBackgroundColor)
           parcel.writeString(chat_room_id)
      }
 
