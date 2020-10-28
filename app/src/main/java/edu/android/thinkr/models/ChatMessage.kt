@@ -14,13 +14,11 @@ class ChatMessage constructor(){
     var user_id: String = ""
     var message_id: String = ""
     @ServerTimestamp var timestamp: Date? = null
-    @Exclude var profile_image_url: String? = ""
 
-    constructor(message: String, user_id: String, message_id : String, timestamp: Date?, profile_image_url: String) : this(){
+    constructor(message: String, user_id: String, message_id : String, timestamp: Date?) : this(){
         this.message = message
         this.user_id = user_id
         this.message_id = message_id
         this.timestamp = timestamp
-        this.profile_image_url = profile_image_url
     }
 }

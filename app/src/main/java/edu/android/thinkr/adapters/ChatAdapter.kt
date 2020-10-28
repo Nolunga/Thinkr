@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -25,7 +27,7 @@ import edu.android.thinkr.viewModel.AppViewModel
  * Created on 10/17/20
  */
 
-class ChatAdapter(var message: List<ChatMessage>, val context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
+class ChatAdapter(val context: Context) : ListAdapter<ChatMessage, ChatAdapter.ViewHolder>(ChatDiffCallback()) {
     private val auth = Firebase.auth
     companion object {
         const val receivedMessage = 1
@@ -71,23 +73,26 @@ class ChatAdapter(var message: List<ChatMessage>, val context: Context) : Recycl
         }
     }
 
-    override fun getItemCount(): Int = message.size
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(message[position])
+        holder.bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (message[position].user_id == auth.currentUser?.uid ){
+        return if (getItem(position).user_id == auth.currentUser?.uid ){
             mySentMessage
         }else{
             receivedMessage
         }
     }
+}
 
-    fun addChats( message: List<ChatMessage>){
-        this.message = message
-        notifyDataSetChanged()
+class ChatDiffCallback : DiffUtil.ItemCallback<ChatMessage>(){
+    override fun areItemsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
+        return oldItem.message_id == newItem.message_id
+    }
+
+    override fun areContentsTheSame(oldItem: ChatMessage, newItem: ChatMessage): Boolean {
+        return oldItem.message == newItem.message
     }
 }

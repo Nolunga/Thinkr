@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_select_module)
         getChatData()
 
         recyclerView = findViewById(R.id.recycler_subjects)
@@ -72,12 +72,12 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
 
     private fun getChatData() {
         chatData = listOf(
-            Subject("Math", R.drawable.ic_math, R.color.md_blue_200, R.color.md_blue_50, "fWJfvwbLkqZBJbA7IPfr"),
-            Subject("English", R.drawable.ic_english, R.color.md_red_200,  R.color.md_red_50, "13kgvYmbYgvDpE9bO5v0"),
-            Subject("Life Science", R.drawable.ic_life_science, R.color.md_green_200, R.color.md_green_50, "6efSteXeg68a50rfWK83"),
-            Subject("Chemistry", R.drawable.ic_chemistry, R.color.md_yellow_200, R.color.md_yellow_50, "1RVdBRppF7QApbrOZ3mm"),
-            Subject("Accounting", R.drawable.ic_accounting, R.color.md_deep_purple_200, R.color.md_deep_purple_50, "fJwa7sHnvRuI8TQJjBYF"),
-            Subject("French", R.drawable.ic_french, R.color.md_pink_200, R.color.md_pink_50, "NyKD5yTvNnA9Tm2ZDrRE")
+            Subject("Math", R.drawable.ic_math, R.color.md_blue_100, R.color.md_blue_50, "fWJfvwbLkqZBJbA7IPfr"),
+            Subject("English", R.drawable.ic_english, R.color.md_red_100,  R.color.md_red_50, "13kgvYmbYgvDpE9bO5v0"),
+            Subject("Chemistry", R.drawable.ic_chemistry, R.color.md_brown_100, R.color.md_brown_50, "1RVdBRppF7QApbrOZ3mm"),
+            Subject("Life Science", R.drawable.ic_life_science, R.color.md_green_100, R.color.md_green_50, "6efSteXeg68a50rfWK83"),
+            Subject("Accounting", R.drawable.ic_accounting, R.color.md_red_100, R.color.md_red_50, "fJwa7sHnvRuI8TQJjBYF"),
+            Subject("French", R.drawable.ic_french, R.color.md_blue_100, R.color.md_blue_50, "NyKD5yTvNnA9Tm2ZDrRE")
         )
     }
 

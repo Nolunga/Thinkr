@@ -24,7 +24,6 @@ import edu.android.thinkr.utils.AppConstants.CHAT_ROOM_KEY
 import edu.android.thinkr.utils.AppConstants.COLLECTION_CHATS
 import edu.android.thinkr.utils.showToast
 import edu.android.thinkr.viewModel.AppViewModel
-import kotlinx.coroutines.coroutineScope
 
 @Suppress("unused")
 class ChatActivity : AppCompatActivity() {
@@ -65,7 +64,7 @@ class ChatActivity : AppCompatActivity() {
             }
         }
 
-        adapter = ChatAdapter(allChats, this)
+        adapter = ChatAdapter(this)
         toolbar = findViewById(R.id.chat_toolbar)
         sendImage = findViewById(R.id.send_message_icon)
         recyclerView = findViewById(R.id.chat_recycler)
@@ -80,7 +79,7 @@ class ChatActivity : AppCompatActivity() {
                     val message = messageEditText.text.toString()
                     messageEditText.setText("")
                     val chatDocument = chatsCollection.document()
-                    val chatMessage = ChatMessage(message, userID, chatDocument.id, null, "")
+                    val chatMessage = ChatMessage(message, userID, chatDocument.id, null)
                     chatDocument.set(chatMessage).addOnCompleteListener {
                         if (it.isSuccessful){
                             showToast("Message Sent")
@@ -117,13 +116,17 @@ class ChatActivity : AppCompatActivity() {
                 Log.e("TAG", "setUpChatListener: got all messages! its ${value.documents}" )
                 val chatList = value.toObjects(ChatMessage::class.java)
                 allChats = chatList
-                adapter.addChats(chatList)
+                adapter.submitList(chatList)
             }
         }
     }
 
     private fun setUpActionBar(subject: Subject) {
         toolbar.title = "${subject.chat_room_name} Chat"
+        toolbar.setNavigationIcon(R.drawable.ic_back)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
         recyclerView.setBackgroundColor(ContextCompat.getColor(this, subject.chatBackgroundColor))
     }
 
