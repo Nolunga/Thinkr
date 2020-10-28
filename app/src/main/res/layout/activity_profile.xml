@@ -9,7 +9,7 @@ android:layout_height="match_parent">
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/md_amber_200"
+        android:background="@color/md_amber_100"
         android:paddingBottom="20dp">
 
         <RelativeLayout
@@ -17,15 +17,14 @@ android:layout_height="match_parent">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/circle_border">
+            android:layout_marginTop="20dp">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="9dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/circle"
+
                 android:padding="3dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/thinkr_user" />
@@ -81,7 +80,7 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@color/followersBg"
+
         android:gravity="center"
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
@@ -118,7 +117,7 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@color/followingBg"
+
         android:gravity="center"
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
@@ -187,11 +186,7 @@ android:layout_height="match_parent">
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/grey" />
+
 
         </LinearLayout>
 
@@ -216,13 +211,14 @@ android:layout_height="match_parent">
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="@color/grey" />
+                />
 
-        </LinearLayout>
+            </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -241,15 +237,11 @@ android:layout_height="match_parent">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/thinkrUsername"
+                android:text="thinkrUsername"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/grey" />
+
 
         </LinearLayout>
 
@@ -275,11 +267,7 @@ android:layout_height="match_parent">
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/grey" />
+
 
         </LinearLayout>
 
