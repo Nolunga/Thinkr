@@ -2,15 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
     <item
-        android:id="drawer_home"
+        android:id="@+id/drawer_home"
         android:title="Home" />
     <item
-        android:id="drawer_settings"
+        android:id="@+id/drawer_settings"
         android:title="Settings" />
     </group>
-    <menu>
+
         <item
-            android:id="drawer_logout"
+            android:id="@+id/drawer_logout"
             android:title="Log Out" />
-    </menu>
 </menu>
