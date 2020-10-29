@@ -71,7 +71,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_margin="1dp"
+            android:layout_margin="0dp"
             android:layout_weight="2"
             android:backgroundTint="@android:color/black"
             android:scaleType="fitCenter"
