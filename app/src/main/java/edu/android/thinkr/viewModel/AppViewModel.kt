@@ -1,10 +1,12 @@
 package edu.android.thinkr.viewModel
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.google.android.material.textfield.TextInputEditText
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import edu.android.thinkr.repository.FirebaseRepo
-import edu.android.thinkr.user.User
+import edu.android.thinkr.models.User
 import edu.android.thinkr.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,6 +52,15 @@ public class AppViewModel(application: Application) : AndroidViewModel(applicati
         genericLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             genericLiveData.postValue(firebaseRepository.resetPassword(email))
+        }
+        return genericLiveData
+    }
+
+    fun getChatRoomID(chatRoomName: String): MutableLiveData<Resource<String>> {
+        val genericLiveData = MutableLiveData<Resource<String>>()
+        genericLiveData.value = Resource.Loading()
+        viewModelScope.launch(Dispatchers.IO) {
+            genericLiveData.postValue(firebaseRepository.getChatRoomID(chatRoomName))
         }
         return genericLiveData
     }
