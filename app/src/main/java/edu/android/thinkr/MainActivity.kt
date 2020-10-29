@@ -74,10 +74,10 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         chatData = listOf(
             Subject("Math", R.drawable.ic_math, R.color.md_amber_100, R.color.md_amber_50, "fWJfvwbLkqZBJbA7IPfr"),
             Subject("English", R.drawable.ic_english, R.color.md_amber_200,  R.color.md_amber_100, "13kgvYmbYgvDpE9bO5v0"),
-            Subject("Chemistry", R.drawable.ic_chemistry, R.color.md_amber_300, R.color.md_amber_200, "1RVdBRppF7QApbrOZ3mm"),
+            Subject("Chemistry", R.drawable.ic_chemistry, R.color.md_amber_300, R.color.md_amber_100, "1RVdBRppF7QApbrOZ3mm"),
             Subject("Life Science", R.drawable.ic_life_science, R.color.md_amber_100, R.color.md_amber_50, "6efSteXeg68a50rfWK83"),
             Subject("Accounting", R.drawable.ic_accounting, R.color.md_amber_200, R.color.md_amber_100, "fJwa7sHnvRuI8TQJjBYF"),
-            Subject("French", R.drawable.ic_french, R.color.md_amber_300, R.color.md_amber_200, "NyKD5yTvNnA9Tm2ZDrRE")
+            Subject("French", R.drawable.ic_french, R.color.md_amber_300, R.color.md_amber_100, "NyKD5yTvNnA9Tm2ZDrRE")
         )
     }
 
