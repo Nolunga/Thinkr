@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navHeader"
     android:background="@color/cardview_light_background"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -8,72 +9,76 @@
     android:padding="16dp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/nav_header_image"
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_person" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:padding="6dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:src= "@drawable/ic_person" />
 
     <TextView
         android:id="@+id/nav_header_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/black"
+        android:layout_below="@+id/nav_header_image"
+        android:fontFamily="@font/arvo_bold"
+        android:paddingTop="8dp"
+        android:text="John Doe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/nav_header_image"
-        app:layout_constraintTop_toBottomOf="@+id/nav_header_image"
-        tools:text="myemail" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/nav_header_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/nav_header_image"
-        app:layout_constraintTop_toBottomOf="@+id/nav_header_name"
-        tools:text="myemail.gmail.com" />
-
-    <TextView
-        android:id="@+id/nav_header_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="johndoe@gmail.com"
+        android:fontFamily="@font/arvo_regular"
+        android:layout_below="@+id/nav_header_name"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:text="100"
-        app:layout_constraintStart_toStartOf="@+id/nav_header_email"
-        app:layout_constraintTop_toBottomOf="@+id/nav_header_email" />
+        android:layout_below="@id/nav_header_email">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:text="Following"
-        app:layout_constraintStart_toEndOf="@+id/nav_header_following"
-        app:layout_constraintTop_toTopOf="@+id/nav_header_following" />
+        <TextView
+            android:id="@+id/nav_header_tracked_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arvo_bold"
+            android:textColor="@android:color/black"
+            android:text="10"
+            android:layout_marginEnd="4dp"/>
+        <TextView
+            android:id="@+id/nav_header_tracked_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arvo_regular"
+            android:text="following"
+            android:textColor="@android:color/black" />
 
-    <TextView
-        android:id="@+id/nav_header_followers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="1000"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/nav_header_following" />
+        <TextView
+            android:id="@+id/nav_header_tracking_you_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arvo_bold"
+            android:text="50"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="12dp"/>
+        <TextView
+            android:id="@+id/nav_header_tracking_you_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arvo_regular"
+            android:text="followers"
+            android:textColor="@android:color/black" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:text="Followers"
-        app:layout_constraintStart_toEndOf="@+id/nav_header_followers"
-        app:layout_constraintTop_toTopOf="@+id/nav_header_followers" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</RelativeLayout>

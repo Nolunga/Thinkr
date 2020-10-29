@@ -1,17 +1,22 @@
 package edu.android.thinkr
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import edu.android.thinkr.adapters.SubjectListAdapter
 import edu.android.thinkr.models.Subject
 import edu.android.thinkr.utils.AppConstants.CHAT_ROOM_KEY
@@ -21,6 +26,10 @@ import edu.android.thinkr.viewModel.AppViewModel
 
 class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedListener {
     private lateinit var firebaseAuthStateListener : FirebaseAuth.AuthStateListener
+    private lateinit var auth : FirebaseAuth
+    private lateinit var drawerLayout : DrawerLayout
+    private lateinit var navigationView : NavigationView
+    private lateinit var drawerIcon : ImageView
     private lateinit var recyclerView : RecyclerView
     private lateinit var adapter : SubjectListAdapter
     private lateinit var progressBar: ProgressBar
@@ -55,10 +64,20 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         setContentView(R.layout.activity_select_module)
         getChatData()
 
+        auth = FirebaseAuth.getInstance()
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navigationView = findViewById(R.id.navigation_view)
+        drawerIcon = findViewById(R.id.hamburger_fab)
         recyclerView = findViewById(R.id.recycler_subjects)
         progressBar = findViewById(R.id.subject_load_progress)
         adapter = SubjectListAdapter(chatData, this, this)
         recyclerView.adapter = adapter
+        navigationView.setCheckedItem(R.id.drawer_home)
+
+
+        drawerIcon.setOnClickListener {
+            openDrawer()
+        }
 
             firebaseAuthStateListener = FirebaseAuth.AuthStateListener {
             val user : FirebaseUser? = it.currentUser
@@ -68,6 +87,7 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
                 finish()
             }
         }
+        setupNavListeners()
     }
 
     private fun getChatData() {
@@ -84,6 +104,7 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
     override fun onResume() {
         super.onResume()
         FirebaseAuth.getInstance().addAuthStateListener(firebaseAuthStateListener)
+        navigationView.setCheckedItem(R.id.drawer_home)
     }
 
     override fun onStop() {
@@ -106,5 +127,57 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         val intent = Intent(this, ChatActivity::class.java)
         intent.putExtra(CHAT_ROOM_KEY, subject)
         startActivity(intent)
+    }
+
+    private fun hideDrawer() {
+        drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
+    private fun openDrawer() {
+        drawerLayout.openDrawer(GravityCompat.START)
+    }
+
+    override fun onBackPressed() {
+        when {
+            drawerLayout.isDrawerOpen(GravityCompat.START) -> {
+                hideDrawer()
+            }
+            else -> {
+                showExitAlert()
+            }
+        }
+    }
+    private fun showExitAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setIcon(R.drawable.thinkrpen)
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Yes") { _, _ ->
+                finish()
+            }
+            .create().show()
+    }
+
+    private fun setupNavListeners() {
+        navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { menuItem ->
+            val checkedItem = navigationView.checkedItem
+            if (checkedItem != null && checkedItem.itemId == menuItem.itemId) return@OnNavigationItemSelectedListener false
+            val activity: Class< out Activity >
+            when (menuItem.itemId) {
+                R.id.drawer_home -> {
+                    navigationView.setCheckedItem(R.id.drawer_home)
+                }
+                R.id.drawer_settings ->{
+                    activity = SettingsActivity::class.java
+                    startActivity(Intent(this, activity))
+                }
+                R.id.drawer_logout -> logOut()
+            }
+            hideDrawer()
+            true
+        })
+    }
+
+    private fun logOut() {
+        auth.signOut()
     }
 }
