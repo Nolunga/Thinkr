@@ -37,6 +37,10 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="arvoTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/arvo_regular</item>
         <item name="android:textSize">14sp</item>
