@@ -46,6 +46,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/thinkricon"
                     android:layout_width="400dp"
                     android:layout_height="300dp"
                     android:layout_margin="8dp"

@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/thinkr"
                 android:layout_width="400dp"
                 android:layout_height="300dp"
                 android:layout_margin="8dp"

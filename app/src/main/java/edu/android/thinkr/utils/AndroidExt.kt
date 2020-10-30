@@ -1,5 +1,9 @@
 package edu.android.thinkr.utils
 
+import android.content.Context
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,4 +23,10 @@ fun TextInputEditText.takeWords() : String{
 }
 fun EditText.takeWords() : String{
     return this.text.toString().trim()
+}
+
+fun playAnimation(context:Context, int: Int, view:View){
+
+    val animation = AnimationUtils.loadAnimation(context, int)
+    view.startAnimation(animation)
 }
