@@ -19,4 +19,5 @@
     <string name="hint_email">Email</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
 </resources>
