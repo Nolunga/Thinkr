@@ -14,8 +14,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ChatActivity"
-            android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar"/>
+        <activity android:name=".SettingsActivity"
+                    android:theme="@style/MainTheme"/>
+        <activity
+
+            android:name=".ChatActivity"
+            android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar" />
 
         <activity
             android:name=".SplashScreenActivity"
@@ -25,22 +29,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar" />
-
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
     </application>
+
 </manifest>

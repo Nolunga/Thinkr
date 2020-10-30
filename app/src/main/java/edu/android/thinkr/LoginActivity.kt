@@ -27,7 +27,6 @@ import edu.android.thinkr.utils.takeWords
 import edu.android.thinkr.viewModel.AppViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
-private const val TAG = "LoginActivity"
 class LoginActivity : AppCompatActivity() {
     private lateinit var username : TextInputEditText
     private lateinit var password : EditText
