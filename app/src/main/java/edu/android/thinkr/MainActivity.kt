@@ -4,9 +4,11 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -14,12 +16,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import edu.android.thinkr.adapters.SubjectListAdapter
 import edu.android.thinkr.models.Subject
 import edu.android.thinkr.utils.AppConstants.CHAT_ROOM_KEY
+import edu.android.thinkr.utils.AppConstants.COLLECTION_USERS
 import edu.android.thinkr.utils.Resource
 import edu.android.thinkr.utils.showToast
 import edu.android.thinkr.viewModel.AppViewModel
@@ -27,6 +34,7 @@ import edu.android.thinkr.viewModel.AppViewModel
 class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedListener {
     private lateinit var firebaseAuthStateListener : FirebaseAuth.AuthStateListener
     private lateinit var auth : FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var navigationView : NavigationView
     private lateinit var drawerIcon : ImageView
@@ -65,6 +73,7 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         getChatData()
 
         auth = FirebaseAuth.getInstance()
+        firestore = Firebase.firestore
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         drawerIcon = findViewById(R.id.hamburger_fab)
@@ -88,6 +97,30 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
             }
         }
         setupNavListeners()
+        setUpNavHeaders()
+    }
+
+    private fun setUpNavHeaders() {
+        val view = navigationView.getHeaderView(0)
+        val headerImage: ImageView = view.findViewById(R.id.nav_header_image)
+        val headerName : TextView = view.findViewById(R.id.nav_header_name)
+        val headerEmail : TextView = view.findViewById(R.id.nav_header_email)
+
+        auth.currentUser.apply {
+            headerName.text = this?.displayName
+            headerEmail.text = this?.email
+        }
+
+
+        firestore.collection(COLLECTION_USERS).document(auth.currentUser!!.uid).get().addOnCompleteListener {
+            if (it.isSuccessful){
+                Glide.with(this)
+                    .load(it.result?.get("imageUrl") as String)
+                    .into(headerImage)
+            }else{
+                showToast(it.exception?.message!!)
+            }
+        }
     }
 
     private fun getChatData() {
