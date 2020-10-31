@@ -1,6 +1,4 @@
-package edu.android.thinkr.user
-
-import java.util.*
+package edu.android.thinkr.models
 
 /**
  * @author robin

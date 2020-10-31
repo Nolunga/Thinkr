@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -13,6 +14,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -53,9 +55,12 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuthStateListener = FirebaseAuth.AuthStateListener {
             val user : FirebaseUser? = it.currentUser
             if (user != null){
-                startActivity(Intent(this, MainActivity::class.java))
-                Log.e(TAG,  user.toString() )
-                finish()
+                Snackbar.make(findViewById(R.id.login_layout), "Logging you in now!...", Snackbar.LENGTH_LONG).show()
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }, 3000)
             }
         }
     }
@@ -71,11 +76,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setStatusBarTransparent(activity: AppCompatActivity){
-        //Make Status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             activity.window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
-        //Make status bar icons color dark
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             activity.window.statusBarColor = Color.WHITE

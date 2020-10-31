@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
-
+import android.view.WindowManager
 /**
  * @author robin
  * Created on 10/11/20
@@ -29,4 +29,8 @@ fun playAnimation(context:Context, int: Int, view:View){
 
     val animation = AnimationUtils.loadAnimation(context, int)
     view.startAnimation(animation)
+}
+
+fun AppCompatActivity.hideSoftKeyBoard(){
+    this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 }

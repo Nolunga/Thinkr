@@ -14,18 +14,20 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import edu.android.thinkr.user.User
-import edu.android.thinkr.utils.*
+import edu.android.thinkr.models.User
+import edu.android.thinkr.utils.Resource
 import edu.android.thinkr.utils.Validation.isValidConfirmPassword
 import edu.android.thinkr.utils.Validation.isValidEmail
 import edu.android.thinkr.utils.Validation.isValidPassword
 import edu.android.thinkr.utils.Validation.isValidPhoneNo
 import edu.android.thinkr.utils.Validation.isValidUsername
+import edu.android.thinkr.utils.showToast
+import edu.android.thinkr.utils.takeWords
 import edu.android.thinkr.viewModel.AppViewModel
 import kotlinx.android.synthetic.main.activity_signup.*
+import edu.android.thinkr.utils.*
 
 
 class SignupActivity : AppCompatActivity() {
@@ -38,6 +40,8 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var signUpButton : Button
     private lateinit var signupProgress : ProgressBar
     private val auth = Firebase.auth
+
+
 
     private val viewModel by lazy {
         ViewModelProvider.AndroidViewModelFactory(application).create(AppViewModel::class.java)
@@ -53,7 +57,6 @@ class SignupActivity : AppCompatActivity() {
         setStatusBarWhite(this@SignupActivity)
 
         playAnimation(this, R.anim.bounce, thinkricon)
-
 
         email = findViewById(R.id.tgt_email)
         username = findViewById(R.id.tgt_username)
@@ -73,7 +76,6 @@ class SignupActivity : AppCompatActivity() {
     }
 
     fun signUp(view: View) {
-
         playAnimation(this, R.anim.play_icon_blink, signUpButton)
         if (!validateFields()) return
         viewModel.registerUser(email.takeWords(), password.takeWords()).observe(
@@ -102,6 +104,7 @@ class SignupActivity : AppCompatActivity() {
                     hideProgress()
                     showToast(it.data)
                     startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
                 }
                 is Resource.Failure ->{
                     showToast(it.message)
