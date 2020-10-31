@@ -23,4 +23,11 @@
     <string name="thinkr_logo">Thinkr Logo</string>
     <string name="tagline">Let\'s start thinkin… \nSelect a subject</string>
     <string name="chat_hint">Type a message</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log Out</string>
+    <string name="_settings">More settings features coming out soon! </string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
 </resources>
