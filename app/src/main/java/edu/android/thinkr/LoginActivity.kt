@@ -22,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import edu.android.thinkr.utils.Resource
 import edu.android.thinkr.utils.Validation.isValidEmail
 import edu.android.thinkr.utils.Validation.isValidPassword
+import edu.android.thinkr.utils.playAnimation
 import edu.android.thinkr.utils.showToast
 import edu.android.thinkr.utils.takeWords
 import edu.android.thinkr.viewModel.AppViewModel
@@ -42,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setStatusBarTransparent(this@LoginActivity)
+
+        playAnimation(this, R.anim.bounce, thinkr)
 
         username = findViewById(R.id.tgt_username)
         password = findViewById(R.id.tgt_password)
@@ -84,13 +87,16 @@ class LoginActivity : AppCompatActivity() {
 
     fun onClick(view: View) {
         if(view.id == R.id.button_signup){
+            playAnimation(this, R.anim.play_icon_blink, button_signup)
             startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
         } else if(view.id == R.id.button_forgot_password){
+            playAnimation(this, R.anim.play_icon_blink, button_forgot_password)
             startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
         }
     }
 
     fun initiateSignUp(view: View) {
+        playAnimation(this, R.anim.play_icon_blink, button_signin)
         if (!validateFields()) return
         viewModel.loginUser(username.takeWords(), password.takeWords()).observe(this, Observer {
             when(it){

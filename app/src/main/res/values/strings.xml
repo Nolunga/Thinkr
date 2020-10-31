@@ -19,6 +19,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
     <string name="thinkr_logo">Thinkr Logo</string>
     <string name="tagline">Let\'s start thinkin… \nSelect a subject</string>
     <string name="chat_hint">Type a message</string>
