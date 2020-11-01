@@ -27,7 +27,6 @@ import edu.android.thinkr.utils.showToast
 import edu.android.thinkr.utils.takeWords
 import edu.android.thinkr.viewModel.AppViewModel
 import kotlinx.android.synthetic.main.activity_signup.*
-import edu.android.thinkr.utils.*
 
 
 class SignupActivity : AppCompatActivity() {
@@ -56,7 +55,6 @@ class SignupActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { super.onBackPressed() }
         setStatusBarWhite(this@SignupActivity)
 
-        playAnimation(this, R.anim.bounce, thinkricon)
 
         email = findViewById(R.id.tgt_email)
         username = findViewById(R.id.tgt_username)
@@ -76,7 +74,6 @@ class SignupActivity : AppCompatActivity() {
     }
 
     fun signUp(view: View) {
-        playAnimation(this, R.anim.play_icon_blink, signUpButton)
         if (!validateFields()) return
         viewModel.registerUser(email.takeWords(), password.takeWords()).observe(
             this, Observer<Resource<String>> {
