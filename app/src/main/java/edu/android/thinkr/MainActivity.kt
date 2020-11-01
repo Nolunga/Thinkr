@@ -1,12 +1,8 @@
 package edu.android.thinkr
 
-
-import androidx.appcompat.app.AppCompatActivity
-
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -34,9 +30,6 @@ import edu.android.thinkr.utils.AppConstants.COLLECTION_USERS
 import edu.android.thinkr.utils.Resource
 import edu.android.thinkr.utils.showToast
 import edu.android.thinkr.viewModel.AppViewModel
-import android.content.Intent
-import android.view.Menu
-import android.view.MenuItem
 
 class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedListener {
     private lateinit var firebaseAuthStateListener : FirebaseAuth.AuthStateListener
@@ -49,7 +42,6 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
     private lateinit var adapter : SubjectListAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var chatData : List<Subject>
-    private lateinit var auth: FirebaseAuth
 
     private val viewModel by lazy {
         ViewModelProvider.AndroidViewModelFactory(application).create(AppViewModel::class.java)
@@ -89,16 +81,12 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         progressBar = findViewById(R.id.subject_load_progress)
         adapter = SubjectListAdapter(chatData, this, this)
         recyclerView.adapter = adapter
-
-        auth = FirebaseAuth.getInstance()
-
         navigationView.setCheckedItem(R.id.drawer_home)
 
 
         drawerIcon.setOnClickListener {
             openDrawer()
         }
-
 
             firebaseAuthStateListener = FirebaseAuth.AuthStateListener {
             val user : FirebaseUser? = it.currentUser
@@ -174,23 +162,6 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         startActivity(intent)
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_logout, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item!!.itemId){
-
-            R.id.logout->{
-                auth.signOut()
-                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                finish()
-            }
-        }
-        return super.onOptionsItemSelected(item)
-
     private fun hideDrawer() {
         drawerLayout.closeDrawer(GravityCompat.START)
     }
@@ -241,6 +212,5 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
 
     private fun logOut() {
         auth.signOut()
-
     }
 }
