@@ -207,7 +207,7 @@
                             android:minWidth="320dp"
                             android:minHeight="45dp"
                             android:singleLine="true"
-                            android:textCursorDrawable="@color/md_purple_A400" />
+                            android:textCursorDrawable="@color/md_amber_200" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
