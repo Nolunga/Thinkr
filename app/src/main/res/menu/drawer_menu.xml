@@ -15,6 +15,10 @@
     </group>
 
         <item
+            android:id="@+id/drawer_timer"
+            android:icon="@drawable/ic_timer"
+            android:title="@string/timer" />
+    <item
             android:id="@+id/drawer_logout"
             android:icon="@drawable/ic_power"
             android:title="@string/log_out" />

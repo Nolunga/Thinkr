@@ -44,6 +44,9 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ThinkinActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
