@@ -29,4 +29,5 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="followers">followers</string>
     <string name="following">following</string>
+    <string name="timer">Timer</string>
 </resources>

@@ -194,15 +194,10 @@ class MainActivity : AppCompatActivity(), SubjectListAdapter.OnSubjectClickedLis
         navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { menuItem ->
             val checkedItem = navigationView.checkedItem
             if (checkedItem != null && checkedItem.itemId == menuItem.itemId) return@OnNavigationItemSelectedListener false
-            val activity: Class< out Activity >
             when (menuItem.itemId) {
-                R.id.drawer_home -> {
-                    navigationView.setCheckedItem(R.id.drawer_home)
-                }
-                R.id.drawer_settings ->{
-                    activity = SettingsActivity::class.java
-                    startActivity(Intent(this, activity))
-                }
+                R.id.drawer_home -> navigationView.setCheckedItem(R.id.drawer_home)
+                R.id.drawer_settings ->startActivity(Intent(this, SettingsActivity::class.java))
+                R.id.drawer_timer -> startActivity(Intent(this, ThinkinActivity::class.java))
                 R.id.drawer_logout -> logOut()
             }
             hideDrawer()
