@@ -30,4 +30,6 @@
     <string name="followers">followers</string>
     <string name="following">following</string>
     <string name="timer">Timer</string>
+    <string name="start_timer">Start Timer</string>
+    <string name="thinkr_session">Thinkr Session</string>
 </resources>

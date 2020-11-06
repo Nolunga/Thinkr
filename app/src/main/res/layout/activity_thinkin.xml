@@ -10,12 +10,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Thinkr Session"
+        android:text="@string/thinkr_session"
         android:textAlignment="center"
         android:textColor="@color/md_amber_400"
         android:textSize="32sp"
         android:textStyle="bold" />
-
 
     <Button
         android:id="@+id/button"
@@ -32,7 +31,7 @@
         android:layout_marginBottom="261dp"
         android:background="@color/md_amber_200"
         android:onClick="startTimeCounter"
-        android:text="Start Timer"
+        android:text="@string/start_timer"
         android:textStyle="bold" />
 
     <TextView

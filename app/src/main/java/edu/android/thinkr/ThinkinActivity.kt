@@ -1,6 +1,7 @@
 package edu.android.thinkr
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 /**
@@ -13,4 +14,6 @@ class ThinkinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_thinkin)
     }
+
+    fun startTimeCounter(view: View) {}
 }
